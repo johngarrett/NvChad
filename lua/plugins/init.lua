@@ -23,7 +23,19 @@ return {
       opts = function()
         require "configs.ts-tools"
       end,
-  }
+  },
+  {
+  "folke/trouble.nvim",
+  opts = {},
+  cmd = "Trouble",
+  keys = {
+    {
+      "<leader>q",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Diagnostics (Trouble)",
+    },
+  },
+}
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },

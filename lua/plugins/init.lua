@@ -35,10 +35,10 @@ return {
         desc = "Diagnostics (Trouble)",
       },
     },
+  },
 
-    -- git
-    {
-      "akinsho/git-conflict.nvim",
-    },
+  -- git
+  {
+    "akinsho/git-conflict.nvim",
   },
 }

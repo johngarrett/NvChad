@@ -1,3 +1,6 @@
+-- plugins added here will be automatically installed by lazy vim
+
+
 return {
   {
     "stevearc/conform.nvim",
@@ -12,6 +15,15 @@ return {
       require "configs.lspconfig"
     end,
   },
+
+  {
+    "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      lazy = false, -- required to get the config to source
+      opts = function()
+        require "configs.ts-tools"
+      end,
+  }
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },

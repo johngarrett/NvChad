@@ -184,6 +184,31 @@ local function build_dir(root_dir)
   return vim.fs.joinpath(root_dir, ".arduino-lsp")
 end
 
+local function sanitize_arguments(arguments)
+  local sanitized = {}
+  local target = nil
+  local removed = {
+    ["-mlongcalls"] = true,
+    ["-fno-tree-switch-conversion"] = true,
+    ["-fstrict-volatile-bitfields"] = true,
+  }
+
+  for i, arg in ipairs(arguments) do
+    if i == 1 then
+      target = arg:match(".*/(xtensa%-[%w%-]+%-elf)%-g%+%+$") or arg:match(".*/(riscv32%-[%w%-]+%-elf)%-g%+%+$")
+      table.insert(sanitized, arg)
+    elseif not removed[arg] then
+      table.insert(sanitized, arg)
+    end
+  end
+
+  if target then
+    table.insert(sanitized, 2, "--target=" .. target)
+  end
+
+  return sanitized
+end
+
 local function remap_compile_commands(root_dir, out_dir)
   local compile_commands = vim.fs.joinpath(out_dir, "compile_commands.json")
   if not uv.fs_stat(compile_commands) then
@@ -206,6 +231,8 @@ local function remap_compile_commands(root_dir, out_dir)
   for _, entry in ipairs(data) do
     local file = entry.file
     if type(file) == "string" and vim.startswith(file, sketch_dir .. "/") then
+      entry.arguments = sanitize_arguments(entry.arguments)
+
       local relative = file:sub(#(sketch_dir .. "/") + 1)
       local original = nil
 

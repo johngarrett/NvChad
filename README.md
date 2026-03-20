@@ -7,3 +7,9 @@
 # Credits
 
 1) Lazyvim starter https://github.com/LazyVim/starter as nvchad's starter was inspired by Lazyvim's . It made a lot of things easier!
+
+# Extra setup notes
+
+- [Arduino LSP setup](./ARDUINO_SETUP.md)
+
+The Arduino setup in this repo uses `arduino-cli` + `clangd` directly, not `arduino-language-server`.

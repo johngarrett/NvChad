@@ -18,7 +18,14 @@ M.base46 = {
 -- M.ui = {
 --       tabufline = {
 --          lazyload = false
---      }
+	--      }
 -- }
+
+M.mason = {
+  pkgs = {
+    -- Arduino support uses direct clangd + arduino-cli integration.
+    "clangd",
+  },
+}
 
 return M

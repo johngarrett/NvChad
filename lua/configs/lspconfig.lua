@@ -1,6 +1,12 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls" }
+vim.lsp.config("astro", {
+  cmd = { "bun", "x", "astro-ls", "--stdio" },
+  filetypes = { "astro" },
+  root_markers = { "astro.config.mjs", "astro.config.ts", "package.json" },
+})
+
+local servers = { "html", "cssls", "astro" }
 vim.lsp.enable(servers)
 
 -- Arduino is custom because it needs project-aware compile database generation

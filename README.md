@@ -13,3 +13,17 @@
 - [Arduino LSP setup](./ARDUINO_SETUP.md)
 
 The Arduino setup in this repo uses `arduino-cli` + `clangd` directly, not `arduino-language-server`.
+
+## TypeScript HTML tagged templates
+
+The `html` tagged template used by the personal website is highlighted as HTML
+inside TypeScript files. The Tree-sitter injection is defined in
+[`after/queries/typescript/injections.scm`](after/queries/typescript/injections.scm),
+and the Neovim plugin configuration ensures the `html` and `typescript` parsers
+are installed.
+
+`nvim-treesitter` builds parsers locally for the current machine, so do not
+commit parser binaries. It requires `tree-sitter-cli` on `PATH`; the parent
+dotfiles setup installs it on macOS, Debian/Ubuntu, and Arch. For a standalone
+installation, install `tree-sitter-cli`, then restart Neovim (or run
+`:TSInstall typescript html`).

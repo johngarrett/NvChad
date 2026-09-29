@@ -9,6 +9,14 @@ vim.lsp.config("astro", {
 local servers = { "html", "cssls", "astro" }
 vim.lsp.enable(servers)
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.keymap.set("n", "<leader>gr", function()
+      require("telescope.builtin").lsp_references()
+    end, { buffer = args.buf, desc = "LSP find references" })
+  end,
+})
+
 -- Arduino is custom because it needs project-aware compile database generation
 -- before clangd can analyze sketches correctly.
 require("configs.arduino").setup()

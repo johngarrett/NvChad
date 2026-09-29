@@ -2,6 +2,14 @@
 
 return {
   {
+    "nvim-tree/nvim-tree.lua",
+    opts = function(_, opts)
+      opts.view.width = 60
+      return opts
+    end,
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}

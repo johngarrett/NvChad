@@ -10,6 +10,8 @@ map("i", "jk", "<ESC>")
 map("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
 
+map("n", "<leader>gd", "<cmd>Telescope git_status<CR>", { desc = "Find Git dirty files" })
+
 map("n", "<leader>fs", function()
   require("telescope.builtin").find_files {
     prompt_title = "Astro Files",

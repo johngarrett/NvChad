@@ -7,6 +7,16 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+map("n", "<C-m>", function()
+  local api = require "nvim-tree.api"
+  local opts = api.config.global()
+  opts.filters.enable = true
+  opts.filters.git_clean = true
+  opts.git.enable = true
+  require("nvim-tree").setup(opts)
+  api.tree.open()
+end, { desc = "Show Git changed files in NvimTree" })
+
 map("n", "<leader>dv", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
 map("n", "<leader>dc", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
 

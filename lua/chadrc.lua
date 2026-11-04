@@ -23,6 +23,7 @@ M.base46 = {
 
 M.mason = {
   pkgs = {
+    "css-lsp",
     -- Arduino support uses direct clangd + arduino-cli integration.
     "clangd",
   },
